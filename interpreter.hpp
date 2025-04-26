@@ -47,7 +47,8 @@ enum StatementType {
 	PRINT,
 	GOTO,
 	IF = 8,
-	RETURN
+	RETURN,
+	SKIP
 };
 
 struct Statement {

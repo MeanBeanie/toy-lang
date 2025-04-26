@@ -248,6 +248,12 @@ Parser::Parser(std::vector<Token> tokens){
 					statements.push_back(current);
 					current.tokens.clear();
 				}
+				else if(tokens[i].raw == "skip"){
+					current.type = SKIP;
+					current.tokens.push_back(tokens[i]);
+					statements.push_back(current);
+					current.tokens.clear();
+				}
 			}
 			default: break;
 		};
@@ -340,7 +346,7 @@ varassign:
 					}
 				}
 				else{
-					// assume its a constant
+					// assume constant
 					std::cout << "[Program Output] " << statements[i].tokens[1].raw << std::endl;
 				}
 				break;
@@ -373,6 +379,10 @@ varassign:
 			case RETURN:
 			{
 				return;
+			}
+			case SKIP:
+			{
+				i++; // skips the next instruction
 			}
 			default: break;
 		}
